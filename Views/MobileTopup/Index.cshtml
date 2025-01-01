@@ -1,0 +1,78 @@
+@model MobileTopupViewModel
+@{
+    ViewData["Title"] = "Mobile Top-up";
+}
+
+<div class="mobile-topup-wrapper">
+    <!-- Header -->
+    <div class="mobile-topup-header">
+        <h1>Mobile Top-up</h1>
+    </div>
+
+    <form asp-controller="MobileTopup" asp-action="Process" method="post" class="mobile-topup-form">
+        <!-- Beneficiary Selection -->
+        <div class="form-card">
+            <div class="form-card-header">
+                <label>Select Beneficiary</label>
+                <button type="button" class="add-new-btn">+ Add New</button>
+            </div>
+            <div class="form-group">
+                <select asp-for="SelectedBeneficiary" 
+                        asp-items="Model.Beneficiaries" 
+                        class="form-select">
+                </select>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="form-label">Phone No</label>
+                <div class="phone-input-group">
+                    <div class="country-code">
+                        <img src="/images/flags/pkr.png" alt="Pakistan flag" class="country-flag" />
+                        <span>+92</span>
+                    </div>
+                    <input asp-for="PhoneNumber" 
+                           type="tel" 
+                           class="form-input" 
+                           placeholder="03134969642" />
+                </div>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <!-- Amount -->
+            <div class="form-group">
+                <div class="amount-input-group">
+                    <div class="currency-select">
+                        <img src="/images/flags/usd.png" alt="US flag" class="currency-flag" />
+                        <span>USD</span>
+                    </div>
+                    <input asp-for="Amount" 
+                           type="number" 
+                           class="form-input" 
+                           value="100.00" 
+                           step="0.01" />
+                </div>
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+            <!-- Includes Fees -->
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    <input asp-for="IncludesFees" type="checkbox" id="includesFees" />
+                    <label for="includesFees">Includes Fees</label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Footer Navigation -->
+    <div class="mobile-topup-footer">
+        <a href="/Home" class="btn-close">
+            Close
+        </a>
+        <button type="submit" form="mobile-topup-form" class="btn-next">
+            Next
+        </button>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+@model SendMoneyViewModel
+@{
+    ViewData["Title"] = "Send Money";
+}
+
+<div class="send-money-wrapper">
+    <!-- Header -->
+    <div class="send-money-header">
+        <h1>Send Money</h1>
+    </div>
+
+    <form asp-controller="SendMoney" asp-action="Index" method="post" class="send-money-form">
+        <!-- Beneficiary Section -->
+        <div class="form-card">
+            <div class="form-card-header">
+                <label>Beneficiary</label>
+                <button type="button" class="add-new-btn">+ Add New</button>
+            </div>
+            <select asp-for="SelectedBeneficiary" 
+                    asp-items="Model.Beneficiaries" 
+                    class="form-select">
+            </select>
+        </div>
+
+        <!-- Receive Method Section -->
+        <div class="form-card">
+            <label class="form-label">How beneficiary will receive?</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="bank" name="ReceiveMethod" value="bank" checked>
+                    <label for="bank">Bank Deposit</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="cash" name="ReceiveMethod" value="cash">
+                    <label for="cash">Cash Pick-up</label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Footer Navigation -->
+    <div class="send-money-footer">
+        <a href="/Home" class="btn-close">
+            <i class="fas fa-times"></i>
+            Close
+        </a>
+        <button type="submit" class="btn-next">
+            Next
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+

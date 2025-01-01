@@ -1,0 +1,67 @@
+@model TransactionHistoryViewModel
+@{
+    ViewData["Title"] = "Transaction History";
+}
+
+<div class="transaction-wrapper">
+    <!-- Header -->
+    <div class="transaction-header">
+        <h1>Transaction History</h1>
+    </div>
+
+    <!-- Transaction List -->
+    <div class="transaction-content">
+        <div class="year-section">
+            <select id="yearSelect" class="year-select">
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
+
+        <div class="transactions-list">
+            @foreach (var Transaction in Model.Transactions)
+            {
+                <div class="transaction-card">
+                    <div class="transaction-main">
+                        <div class="transaction-info">
+                            <h3 class="beneficiary">@Transaction.Beneficiary</h3>
+                            <p class="amount">RP @Transaction.Amount</p>
+                            <p class="reference">Ref# @Transaction.ReferenceNumber</p>
+                        </div>
+                        <div class="transaction-meta">
+                            <span class="transaction-date">@Transaction.TransactionDate.ToString("dd-MMM")</span>
+                            <span class="usd-amount">$ @Transaction.UsdAmount</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Activity</span>
+        </a>
+        <a href="/ExchangeRate" class="nav-item">
+            <i class="fas fa-calculator"></i>
+            <span>ex-Rate</span>
+        </a>
+        <a href="/home" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-wallet"></i>
+            <span>eWallet</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Menu</span>
+        </a>
+    </nav>
+</div>
+

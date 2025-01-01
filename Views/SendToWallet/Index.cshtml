@@ -1,0 +1,120 @@
+@model SendToWalletViewModel
+@{
+    ViewData["Title"] = "Send To Wallet";
+}
+
+<div class="wallet-wrapper">
+    <!-- Header -->
+    <div class="wallet-header">
+        <h1>Send To Wallet</h1>
+    </div>
+
+    <form asp-controller="SendToWallet" asp-action="Index" method="post" class="wallet-form">
+        <!-- Beneficiary Section -->
+        <div class="form-card">
+            <div class="form-group">
+                <label asp-for="BeneficiaryId" class="form-label">Search Beneficiary</label>
+                <div class="search-input-group">
+                    <input asp-for="BeneficiaryId"
+                           type="text"
+                           class="form-input"
+                           value="2203224564" />
+                    <button type="button" class="btn-search">Search</button>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.BeneficiaryName))
+            {
+                <div class="beneficiary-info">
+                    <div class="radio-option selected">
+                        <input type="radio" checked disabled />
+                        <label>@Model.BeneficiaryName</label>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Amount Section -->
+        <div class="form-card">
+            <div class="amount-field">
+                <div class="currency-flag">
+                    <img src="/images/flags/gmd.png" alt="GMD flag" />
+                </div>
+                <input type="text"
+                       class="form-input SendWallet-amount"
+                       placeholder="Enter amount" />
+            </div>
+            <div class="exchange-rate">
+                Exchange Rate 1 GMD = 1 GMD
+            </div>
+        </div>
+
+        <!-- Transaction Details -->
+        <div class="form-card">
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span>Sending Amount:</span>
+                    <span>@Model.SendingAmount.ToString("F2") D</span>
+                </div>
+                <div class="detail-row">
+                    <span>Service Charges:</span>
+                    <span>@Model.ServiceCharges.ToString("F2") D</span>
+                </div>
+                <div class="detail-row">
+                    <span>Handling Fee:</span>
+                    <span>@Model.HandlingFee.ToString("F2") D</span>
+                </div>
+                <div class="detail-row">
+                    <span>Payment Method Fee:</span>
+                    <span>@Model.PaymentMethodFee.ToString("F2") D</span>
+                </div>
+                <div class="detail-row">
+                    <span>Receiver will get</span>
+                    <span>@Model.ReceiverAmount.ToString("F2") D</span>
+                </div>
+                <div class="detail-row total">
+                    <span>Amount Deducted from your account:</span>
+                    <span>@Model.TotalDeduction.ToString("F2") D</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discount Section -->
+        <div class="form-card">
+            <div class="form-group">
+                <label class="form-label">Discount</label>
+                <div class="coupon-input-group">
+                    <input type="text"
+                           class="form-input"
+                           placeholder="Enter coupon" />
+                    <button type="button" class="btn-apply">
+                        <i class="fas fa-hand-pointer"></i>
+                    </button>
+                </div>
+                <div class="coupon-hint">Click on button to apply the coupon</div>
+            </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="form-card">
+            <div class="checkbox-wrapper">
+                <input asp-for="AgreeToTerms" type="checkbox" />
+                <label asp-for="AgreeToTerms">
+                    I agree <a href="#" class="terms-link">terms and conditions</a>
+                </label>
+            </div>
+            <span asp-validation-for="AgreeToTerms" class="text-danger"></span>
+        </div>
+    </form>
+
+    <!-- Footer Navigation -->
+    <div class="wallet-footer">
+        <a href="/home" class="btn-close">
+            Close
+        </a>
+        <button type="submit" form="wallet-form" class="btn-approve">
+            Approve
+        </button>
+    </div>
+</div>
+

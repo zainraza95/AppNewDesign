@@ -1,0 +1,83 @@
+@model ElectricityTopUpViewModel
+@{
+    ViewData["Title"] = "Electricity Top-Up";
+}
+
+<div class="electricity-wrapper">
+    <!-- Header -->
+    <div class="electricity-header">
+        <h1>Electricity Top-Up</h1>
+    </div>
+
+    <form asp-controller="Electricity" asp-action="Process" method="post" class="electricity-form">
+        <!-- Beneficiary Section -->
+        <div class="form-card">
+            <div class="form-card-header">
+                <label>Select Beneficiary</label>
+                <button type="button" class="add-new-btn">+ Add New</button>
+            </div>
+            <div class="form-group">
+                <select asp-for="SelectedBeneficiary" 
+                        asp-items="Model.Beneficiaries" 
+                        class="form-select">
+                </select>
+            </div>
+        </div>
+
+        <!-- Payment Method Section -->
+        <div class="form-card">
+            <div class="form-section">
+                <label class="form-label">How beneficiary will receive?</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="billPayment" 
+                               name="PaymentMethod" 
+                               value="bill-payment"
+                               checked="@(Model.PaymentMethod == "bill-payment")" />
+                        <label for="billPayment">Bill Payment</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="topUp" 
+                               name="PaymentMethod" 
+                               value="top-up"
+                               checked="@(Model.PaymentMethod == "top-up")" />
+                        <label for="topUp">Electricity Top up</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biller Account Section -->
+        <div class="form-card">
+            <div class="form-section">
+                <div class="header-with-action">
+                    <label class="form-label">Biller Account</label>
+                    <button type="button" class="add-new-btn">+ Add New</button>
+                </div>
+                <div class="radio-group">
+                    @foreach (var account in Model.BillerAccounts)
+                    {
+                        <div class="radio-option">
+                            <input type="radio" id="@account.Replace(" ", "")" 
+                                   name="BillerAccount" 
+                                   value="@account"
+                                   checked="@(Model.BillerAccount == account)" />
+                            <label for="@account.Replace(" ", "")">@account</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Footer Navigation -->
+    <div class="electricity-footer">
+        <a href="/Home" class="btn-close">
+            Close
+        </a>
+        <button type="submit" form="electricity-form" class="btn-next">
+            Next
+        </button>
+    </div>
+</div>
+

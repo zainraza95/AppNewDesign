@@ -1,0 +1,94 @@
+@model ExchangeRateViewModel
+@{
+    ViewData["Title"] = "Exchange Rate Calculator";
+}
+
+<div class="exchange-rate-wrapper">
+    <div class="exchange-rate-header">
+        <h1>Exchange Rate</h1>
+    </div>
+
+    <div class="exchange-rate-content">
+        <div class="currency-card">
+            <!-- USD Input -->
+            <div class="currency-row">
+                <div class="currency-info">
+                    <img src="/images/flags/usd.png" alt="USD Flag" class="currency-flag" />
+                    <span class="currency-code">USD</span>
+                </div>
+                <div class="amount-input">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" 
+                           id="usdAmount" 
+                           value="@Model.UsdAmount.ToString("F2")"
+                           step="0.01" 
+                           class="exrate-amount-field" />
+                </div>
+            </div>
+
+            <!-- GMD Output -->
+            <div class="currency-row">
+                <div class="currency-info">
+                    <img src="/images/flags/gmd.png" alt="GMD Flag" class="currency-flag" />
+                    <span class="currency-code">GMD</span>
+                </div>
+                <div class="amount-display">
+                    <span class="converted-amount" id="gmdAmount">GMD @Model.GmdAmount.ToString("N2")</span>
+                    <span class="exchange-rate">1 USD = @Model.GmdRate.ToString("N4") GMD</span>
+                </div>
+            </div>
+
+            <!-- PKR Output -->
+            <div class="currency-row">
+                <div class="currency-info">
+                    <img src="/images/flags/pkr.png" alt="PKR Flag" class="currency-flag" />
+                    <span class="currency-code">PKR</span>
+                </div>
+                <div class="amount-display">
+                    <span class="converted-amount" id="pkrAmount">PKR @Model.PkrAmount.ToString("N2")</span>
+                    <span class="exchange-rate">1 USD = @Model.PkrRate.ToString("N4") PKR</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Activity</span>
+        </a>
+        <a href="/ExchangeRate" class="nav-item">
+            <i class="fas fa-calculator"></i>
+            <span>ex-Rate</span>
+        </a>
+        <a href="/home" class="nav-item active">
+            <i class="fas fa-home" style="color:#07a7f4"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-wallet"></i>
+            <span>eWallet</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Menu</span>
+        </a>
+    </nav>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('usdAmount').addEventListener('input', function(e) {
+            const amount = parseFloat(e.target.value) || 0;
+            const gmdRate = @Model.GmdRate;
+            const pkrRate = @Model.PkrRate;
+            
+            document.getElementById('gmdAmount').textContent = 
+                `GMD ${(amount * gmdRate).toFixed(2)}`;
+            document.getElementById('pkrAmount').textContent = 
+                `PKR ${(amount * pkrRate).toFixed(2)}`;
+        });
+    </script>
+}
+

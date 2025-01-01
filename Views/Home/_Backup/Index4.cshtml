@@ -1,0 +1,90 @@
+@model UserDashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="app-wrapper">
+    <div class="dashboard-container">
+        <div class="logo-container">
+            <img src="/images/RA_Logo.png" alt="Remit Anywhere Logo" class="company-logo" />
+        </div>
+        
+        <div class="header-card">
+            <div class="header-content">
+                <div class="user-info">
+                    <h1 class="welcome">Welcome back</h1>
+                    <div class="user-name">Zain Raza</div>
+                    <div class="account-number">Account No. 12345678</div>
+                </div>
+                <div class="date-refresh">
+                    <div class="date">Dec 31, 2024</div>
+                    <button class="refresh-button"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <section class="feature-section">
+            <h2>Send Money</h2>
+            <div class="features-grid">
+                <a href="#" class="feature-item">
+                    <i class="fas fa-university"></i>
+                    <span>Bank Transfer</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <span>Cash Pickup</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Wallet</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Bill Pay</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="feature-section">
+            <h2>Pay Bills</h2>
+            <div class="features-grid">
+                <a href="#" class="feature-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Topup</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Electricity</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-gas-pump"></i>
+                    <span>Fuel</span>
+                </a>
+                <a href="#" class="feature-item">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>Groceries</span>
+                </a>
+            </div>
+        </section>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Activity</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
