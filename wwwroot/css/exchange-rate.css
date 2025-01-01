@@ -81,13 +81,13 @@
 }
 
 .exrate-amount-field {
-    width: 100px;
+    width: 70px;
     border: none;
     font-size: 1.25rem;
     font-weight: 500;
     color: #1a1a1a;
     text-align: right;
-    padding: 0.25rem;
+    padding: 3px;
     background: transparent;
 }
 
