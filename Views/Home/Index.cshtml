@@ -3,6 +3,18 @@
     ViewData["Title"] = "Dashboard";
 }
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function showCurrentDate() {
+        const dateElement = document.getElementById('currentDate');
+        const currentDate = new Date();
+        dateElement.textContent = currentDate.toDateString(); // Displays the date in a readable format
+    }
+
+    // Call the function when the page loads
+    window.onload = showCurrentDate;
+</script>
+
 <div class="app-wrapper">
     <div class="dashboard-container">
         <div class="logo-container">
@@ -17,8 +29,8 @@
                     <div class="account-number">Account No. 12345678</div>
                 </div>
                 <div class="date-refresh">
-                    <div class="date">Dec 31, 2024</div>
-                    @* <button class="refresh-button"><i class="fas fa-sync-alt"></i></button> *@
+                    <div class="date" id="currentDate">Month 00, 1234</div>
+                    <button type="button" class="refresh-button" id="clearCacheButton"><i class="fas fa-sync-alt"></i></button>
                 </div>
             </div>
         </div>
